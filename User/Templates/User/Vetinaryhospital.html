@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <td>Place</td>
-                <td><select name="place" id="place">
+                <td><select name="place" id="place" onchange="search()">
                     <option value="">---select---</option>
              
                 <option value="">--Select--</option>
@@ -40,6 +40,7 @@
                 <td>Address</td>
                 <td>Contact</td>
                 <td>Email</td>
+                <td>Action</td>
             </tr>
             {% for i in vhospl  %}
             <tr >
@@ -48,13 +49,15 @@
                 <td>{{ i.vetinaryhospital_address}}</td>
                 <td>{{i.vetinaryhospital_contact}}</td>
                 <td>{{i.vetinaryhospital_email}}</td>
+                <td><a href="{% url 'User:appoinment' i.vetinaryhospital_id %}">Appoinment</a></td>
+            </tr>
             </tr>
             {% endfor %}
         </table>
 
 
 
-        
+
     </form>
 </body>
 </html>
@@ -63,7 +66,7 @@
 <script>
     $("#district").change(function () {
         var did = $(this).val();
-        var ur = "{% url 'User:ajaxplace' %}"
+        var ur = "{% url 'Guest:ajaxplace' %}"
         $.ajax({
             url: ur,
             data: { did: did, },
@@ -76,14 +79,13 @@
 
 
     function search() {
-        var pid = document.getElementById("pettype").value
-        var did = document.getElementById("breed").value
        
-        // console.log(rate);
-        var ur = "{% url 'User:ajaxtraining' %}"
+        var did = document.getElementById("place").value
+       
+        var ur = "{% url 'User:ajaxhospital' %}"
         $.ajax({
             url: ur,
-            data: { pid: pid,did: did },
+            data: { did: did },
             success: function (data) {
                 $("#result").html(data);
             },

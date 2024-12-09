@@ -189,17 +189,32 @@ def vetinaryhospital(request):
     vhospl=tbl_vetinaryhospital.objects.all()
     return render(request,'User/Vetinaryhospital.html',{'district':district,'vhospl':vhospl})
 
-# def ajaxplace(request):
-#     pettype=request.GET.get("pid")
-#     breed=request.GET.get("did")
-#     abactivity=tbl_abnormalactivity.objects.filter(breed=breed,breed__pettype__id=pettype)
-#     return render(request,'User/Ajaxplace.html',{'abactivity':abactivity})
 
-def ajaxplace(request):
-    district_id = request.GET.get('did')
-    place = tbl_place.objects.filter(district=district_id)
-    return render(request, "User/Ajaxplace.html", {'place': place})
+def ajaxhospital(request):
+    place = request.GET.get('did')
+    vhospl= tbl_vetinaryhospital.objects.filter(place_id=place)
+    return render(request, "User/AjaxHospital.html", {'vhospl': vhospl})
     
+
+def appoinment(request,id):
+    user=tbl_userreg.objects.get(user_id=request.session["uid"])
+    vhosptl=tbl_vetinaryhospital.objects.get(vetinaryhospital_id=id)
+    appoinment=tbl_appoinment.objects.all()
+    if request.method=="POST":
+        adate=request.POST.get("date")
+        atime=request.POST.get("time")
+        tbl_appoinment.objects.create(
+            appoinment_date=adate,vetinaryhospital_id=vhosptl,user_id=user,appoinment_time=atime
+        )
+        return render(request,'User/Appoinment.html')
+    else:
+        return render(request,'User/Appoinment.html',{'appoinment':appoinment})
+
+
+
+
+
+
 
 
 

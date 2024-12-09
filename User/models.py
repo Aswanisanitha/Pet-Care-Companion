@@ -29,6 +29,11 @@ class tbl_feedback(models.Model):
     feedback_date=models.DateField()
     user_id=models.ForeignKey(tbl_userreg,on_delete=models.CASCADE)
 
+class tbl_appoinment(models.Model):
+    user_id=models.ForeignKey(tbl_userreg,on_delete=models.CASCADE)
+    vetinaryhospital_id=models.ForeignKey(tbl_vetinaryhospital,on_delete=models.CASCADE)
+    appoinment_date=models.DateField()
+    appoinment_time=models.TimeField()
 
 
 

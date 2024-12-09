@@ -33,8 +33,12 @@ urlpatterns = [
     path('ajaxabactivity/',views.ajaxabactivity,name="ajaxabactivity"),
     path('abnormalactivity/',views.abnormalactivity,name="abnormalactivity"),
 
-    path('ajaxplace/',views.ajaxplace,name="ajaxplace"),
+    path('ajaxhospital/',views.ajaxhospital,name="ajaxhospital"),
     path('vetinaryhospital/',views.vetinaryhospital,name="vetinaryhospital"),
+
+    path('Appoinment/<str:id>',views.appoinment,name="appoinment"),
+    
+
 
 
 

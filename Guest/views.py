@@ -73,38 +73,41 @@ def ajaxplace(request):
 
 
 def login(request):
-    if request.method=="POST":
-        email=request.POST.get('username')
-        password=request.POST.get('password')
+    if request.method == "POST":
+        email = request.POST.get('username')
+        password = request.POST.get('password')
 
-        auth_response=supabase.auth.sign_in_with_password({
-            "email" : email,
-            "password" : password
+        # Authenticate user with Supabase
+        auth_response = supabase.auth.sign_in_with_password({
+            "email": email,
+            "password": password
         })
-        # print(auth_response.user)
 
         if auth_response.user:
-            user_data=auth_response.user
-            user_id=user_data.id
-            # print(user_id)
+            user_data = auth_response.user
+            user_id = user_data.id
+            print(user_id)
+
             try:
-                user=tbl_userreg.objects.get(user_id=user_id)
-                request.session['uid']=user.user_id
+                # Check in tbl_userreg
+                user = tbl_userreg.objects.get(user_id=user_id)
+                request.session['uid'] = user.user_id
                 return redirect("User:homepage")
             except tbl_userreg.DoesNotExist:
-
                 try:
-                    hospital=tbl_vetinaryhospital.objects.get(vetinaryhospital_id=user_id)
-                    request.session['uid']=hospital.vetinaryhospital_id
+                    # Check in tbl_vetinaryhospital
+                    hospital = tbl_vetinaryhospital.objects.get(vetinaryhospital_id=user_id)
+                    request.session['uid'] = hospital.vetinaryhospital_id
                     return redirect("Vetinaryhospital:homepage")
                 except tbl_vetinaryhospital.DoesNotExist:
-
-            
-                    return render(request,"Guest/Login.html",{"error":"User DoesNot Exist"})
+                    # Neither user nor hospital found
+                    return render(request, "Guest/Login.html", {"error": "User does not exist"})
         else:
-            return render(request,"Guest/Login.html",{"error":"Invalid Data"})
+            # Invalid authentication
+            return render(request, "Guest/Login.html", {"error": "Invalid credentials"})
     else:
-        return render(request,'Guest/Login.html')
+        # For non-POST requests
+        return render(request, 'Guest/Login.html')
 
 
 

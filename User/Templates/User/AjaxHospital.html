@@ -1,0 +1,19 @@
+<table>
+    <tr>
+        <td>#</td>
+        <td>Name</td>
+        <td>Address</td>
+        <td>Contact</td>
+        <td>Action</td>
+    </tr>
+    {% for i in vhospl  %}
+    <tr >
+        <td>{{ forloop.counter }}</td>
+        <td>{{i.vetinaryhospital_name}}</td>
+        <td>{{ i.vetinaryhospital_address}}</td>
+        <td>{{i.vetinaryhospital_contact}}</td>
+        <td>{{i.vetinaryhospital_email}}</td>
+        <td><a href="{% url 'User:appoinment' %}">Appoinment</a></td>
+    </tr>
+    {% endfor %}
+</table>
