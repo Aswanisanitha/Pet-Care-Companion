@@ -1,0 +1,25 @@
+<table>
+    <tr>
+        <td>#</td>
+        <td>Pet</td>
+        <td>Breed</td>
+        <td>Training Type</td>
+        <td>Video</td>
+    </tr>
+    {% for i in training  %}
+    <tr >
+        <td>{{ forloop.counter }}</td>
+        <td>{{i.breed.pettype.type_name}}</td>
+        <td>{{ i.breed.breed_name}}</td>
+        <td>{{i.traning_name}}</td>
+        <td>
+           
+            <a href="{{i.traning_file}}">
+                <video controls="controls" width="150" height="150"><source src="{{i.traning_file}}" ></video>
+            
+
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+</head>
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="name" id="name"></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><textarea name="address" id="address" cols="30" rows="10"></textarea></td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td><input type="text" name="contact" id="contact"></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="text" name="email" id="email"></td>
+        </tr>
+        <tr>
+            <td>District</td>
+            <td><select name="district" id="district">
+                <option value="">---select---</option>
+         
+            {% for i in district %}
+            <option value="{{i.id}}">{{i.district_name }}</option>
+            {% endfor %}
+
+        </td>
+   </select>
+        </tr>
+        <tr>
+            <td>Place</td>
+            <td><select name="place" id="place">
+                <option value="">---select---</option>
+         
+            <option value="">--Select--</option>
+        
+                </td>
+           </select>
+        </tr>
+        <tr>
+            <td>Photo</td>
+            <td><input type="file" name="photo" id="photo"></td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td><input type="radio" name="gender" value="male">Male
+                <input type="radio" name="gender" value="female">Female
+        </tr>
+        <tr>
+            <td>Date of Birth</td>
+            <td><input type="date" name="dob" id=""></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input type="password" name="password" ></td>
+        </tr>
+        <tr>
+            <td>Confirm Password</td>
+            <td><input type="password" name="conpswd" ></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="submit" value="Sign Up">
+                <input type="reset" value="Cancel"></td>
+            <td></td>
+        </tr>
+    </form>
+    </table>
+</body>
+</html>
+{% if error %}
+<script>
+    alert("{{error}}");
+    window.location="{% url 'Guest:userreg' %}"
+</script>
+{% endif %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $("#district").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'Guest:ajaxplace' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#place").html(data);
+            },
+        });
+    });
+</script>

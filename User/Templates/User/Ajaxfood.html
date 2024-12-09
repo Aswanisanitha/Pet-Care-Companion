@@ -1,0 +1,25 @@
+<table>
+    <tr>
+        <td>#</td>
+        <td>Pet</td>
+        <td>Breed</td>
+        <td>Food</td>
+        <td>Quantity</td>
+        <td>Calories</td>
+        <td>Action</td>
+
+                
+            </tr>
+            {% for i in food %}
+                <tr>
+                    <td>{{ forloop.counter}}</td>
+                    <td>{{i.breed.pettype.type_name}}</td>
+                    <td>{{ i.breed.breed_name}}</td>
+                    <td>{{i.food.food_name}}</td>
+                    <td>{{i.food_quantity}}</td>
+                    <td>{{i.food.food_calories}}</td>
+
+            
+        </tr>
+        {% endfor %}
+    </table>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet</title>
+</head>
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" id=""></td>
+            </tr>
+            <tr>
+                <td>Pet Type</td>
+                <td><select name="pettype" id="pettype">
+                    <option value="">---select---</option>
+             
+                {% for i in type %}
+                <option value="{{i.id}}">{{i.type_name }}</option>
+                {% endfor %}
+    
+            </td>
+        </select>
+        </tr>
+            <tr>
+                <td>Breed</td>
+                <td><select name="breed" id="breed">
+                    <option value="">---select---</option>
+             
+                <option value="">--Select--</option>
+            
+                    </td>
+               </select>
+               </tr>
+            <tr>
+                <td>Weight</td>
+                <td><input type="text" name="weight" id=""></td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td><input type="text" name="age" id=""></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="radio" name="gender" value="Male" id="">Male
+                    <input type="radio" name="gender" value="Female" id="">Female</td>
+            </tr>
+            <tr>
+                <td>Photo</td>
+                <td><input type="file" name="photo" id=""></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Submit"></td>
+                <td></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>#</td>
+                <td>Photo</td>
+                <td>Name</td>
+                <td>Type</td>
+                <td>Breed</td>
+                <td>Weight</td>
+                <td>Age</td>
+                <td>Gender</td>
+                <td>Action</td>
+            </tr>
+            {% for i in pet %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><img src="{{i.pet_photo}}" width="150" height="150" alt="" ></td>
+                <td>{{ i.pet_name }}</td>
+                <td>{{i.breed.pettype.type_name}}</td>
+                <td>{{ i.breed.breed_name}}</td>
+                <td>{{i.pet_weight}}</td>
+                <td>{{i.pet_age}}</td>
+                <td>{{i.gender}}</td>
+                <td><a href="{% url 'User:delpet' i.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
+{% if msg %}
+<script>
+    alert("{{msg}}");
+    window.location="{% url 'User:pet' %}"
+</script>
+{% endif %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $("#pettype").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'User:ajaxbreed' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#breed").html(data);
+            },
+        });
+    });
+</script>

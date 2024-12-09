@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Pet Type</td>
+                <td><select name="pettype" id="pettype">
+                    <option value="">---select---</option>
+             
+                {% for i in pettype %}
+                <option value="{{i.id}}">{{i.type_name }}</option>
+                {% endfor %}
+    
+            </td>
+        </select>
+        </tr>
+            <tr>
+                <td>Breed</td>
+                <td><select name="breed" id="breed" onchange="search()">
+                    <option value="">---select---</option>
+             
+                <option value="">--Select--</option>
+            
+                    </td>
+               </select>
+               </tr>
+        </table>
+
+        <table id="result">
+            <tr>
+                <td>#</td>
+                <td>Type</td>
+                <td>Breed</td>
+                <td>Name</td>
+                <td>Reason</td>
+                <td>Solution</td>
+                <td>Action</td>
+            </tr>
+            {% for i in abactivity %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{i.breed.pettype.type_name}}</td>
+                <td>{{ i.breed.breed_name}}</td>
+                <td>{{i.ab_name}}</td>
+                <td>{{i.ab_reason}}</td>
+                <td>{{i.ab_solution}}</td>
+               
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $("#pettype").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'User:ajaxbreed' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#breed").html(data);
+            },
+        });
+    });
+
+    function search() {
+        var pid = document.getElementById("pettype").value
+        var did = document.getElementById("breed").value
+       
+        // console.log(rate);
+        var ur = "{% url 'User:ajaxabactivity' %}"
+        $.ajax({
+            url: ur,
+            data: { pid: pid,did: did },
+            success: function (data) {
+                $("#result").html(data);
+            },
+        });
+    }
+</script>

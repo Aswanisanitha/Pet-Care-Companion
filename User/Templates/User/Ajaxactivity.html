@@ -1,0 +1,21 @@
+<table>
+    <tr>
+        <td>#</td>
+        <td>Pet Type</td>
+        <td>Breed</td>
+        <td>Activity</td>
+        <td>Time</td>
+        <td>Details</td>
+        <td>Action</td>
+    </tr>
+    {% for i in activity %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{i.breed.pettype.type_name}}</td>
+        <td>{{ i.breed.breed_name}}</td>
+        <td>{{ i.activity_name}}</td>
+        <td>{{ i.activity_time}}</td>
+        <td>{{i.activity_details}}</td>
+    </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traning</title>
+</head>
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Pet Type</td>
+                <td><select name="pettype" id="pettype">
+                    <option value="">---select---</option>
+             
+                {% for i in type %}
+                <option value="{{i.id}}">{{i.type_name }}</option>
+                {% endfor %}
+    
+            </td>
+        </select>
+        </tr>
+            <tr>
+                <td>Breed</td>
+                <td><select name="breed" id="breed">
+                    <option value="">---select---</option>
+             
+                <option value="">--Select--</option>
+            
+                    </td>
+               </select>
+               </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" id=""></td>
+            </tr>
+            <tr>
+                <td>File</td>
+                <td><input type="file" name="photo" id=""></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Submit"></td>
+                <td></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>#</td>
+                <td>Pet Type</td>
+                <td>Breed</td>
+                <td>Name</td>
+                <td>File</td>
+                <td>Action</td>
+            </tr>
+            {% for i in traning %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{i.breed.pettype.type_name}}</td>
+                <td>{{ i.breed.breed_name}}</td>
+                <td>{{i.traning_name}}</td>
+                <td>
+                   
+                    <a href="{{i.traning_file}}">
+                        <video controls="controls" width="150" height="150"><source src="{{i.traning_file}}" ></video>
+                    
+
+                    </a>
+                </td>
+                <td><a href="{% url 'Admin:deltraning' i.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
+{% if msg %}
+<script>
+    alert("{{msg}}");
+    window.location="{% url 'Admin:traning' %}"
+</script>
+{% endif %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $("#pettype").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'Admin:ajaxbreed' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#breed").html(data);
+            },
+        });
+    });
+</script>

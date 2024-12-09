@@ -1,0 +1,22 @@
+<table>
+    <tr>
+        <td>#</td>
+        <td>Type</td>
+        <td>Breed</td>
+        <td>Name</td>
+        <td>Reason</td>
+        <td>Solution</td>
+        <td>Action</td>
+    </tr>
+    {% for i in abactivity %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{i.breed.pettype.type_name}}</td>
+        <td>{{ i.breed.breed_name}}</td>
+        <td>{{i.ab_name}}</td>
+        <td>{{i.ab_reason}}</td>
+        <td>{{i.ab_solution}}</td>
+       
+    </tr>
+    {% endfor %}
+</table>

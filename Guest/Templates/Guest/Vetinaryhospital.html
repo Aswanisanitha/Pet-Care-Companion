@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetinary Hospital</title>
+</head>
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" id=""></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email" id=""></td>
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td><input type="text" name="contact" id=""></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td><textarea name="address" id="" cols="30" rows="10"></textarea></td>
+            </tr>
+            <tr>
+                <td>District</td>
+                <td><select name="district" id="district">
+                    <option value="">---select---</option>
+             
+                {% for i in district %}
+                <option value="{{i.id}}">{{i.district_name }}</option>
+                {% endfor %}
+    
+            </td>
+       </select>
+            </tr>
+            <tr>
+                <td>Place</td>
+                <td><select name="place" id="place">
+                    <option value="">---select---</option>
+             
+                <option value="">--Select--</option>
+            
+                    </td>
+               </select>
+            </tr>
+            <tr>
+                <td>Proof</td>
+                <td><input type="file" name="photo" id=""></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="password" name="password" id=""></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Register"></td>
+                <td></td>
+            </tr>
+            
+        </table>
+    </form>
+</body>
+</html>
+{% if error %}
+<script>
+    alert("{{error}}");
+    window.location="{% url 'Guest:vetinaryhospital' %}"
+</script>
+{% endif %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $("#district").change(function () {
+        var did = $(this).val();
+        var ur = "{% url 'Guest:ajaxplace' %}"
+        $.ajax({
+            url: ur,
+            data: { did: did, },
+            success: function (data) {
+                $("#place").html(data);
+            },
+        });
+    });
+</script>

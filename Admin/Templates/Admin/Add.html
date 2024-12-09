@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Add</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <tr>
+            <td>Number1</td>
+            <td><input type="text" name="number1" id=""></td>
+        </tr>
+        <tr>
+            <td>Number2</td>
+            <td><input type="text" name="number2" id=""></td>
+        </tr>
+        <tr>
+            <td>Number3</td>
+            <td><input type="text" name="number3" id=""></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="submit" name="btn" value="submit"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Largest:</td>
+            <td>{{result}}</td>
+            <td>Smallest:</td>
+            <td>{{smallest}}</td>
+        </tr>
+
+
+
+
+    </form>
+</body>
+</html>
