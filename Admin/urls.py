@@ -9,15 +9,16 @@ urlpatterns = [
     path('District/',views.district,name="district"),
     path('Category/',views.category,name="category"),
     path('Admin/',views.Admin,name="Admin"),
-    path('deladmin/<int:id>',views.deladmin,name="deladmin"),
+    path('deladmin/<str:id>',views.deladmin,name="deladmin"),
     path('deldistrict/<int:id>',views.deldistrict,name="deldistrict"),
     path('editdistrict/<int:id>',views.editdistrict,name="editdistrict"),
-    path('editadmin/<int:id>',views.editadmin,name="editadmin"),
+    path('editadmin/<str:id>',views.editadmin,name="editadmin"),
     path('Place/',views.place,name="place"),
     path('Subcategory/',views.subcategory,name="subcategory"),
     path('editsubcategory/<int:id>',views.editsubcategory,name="editsubcategory"),
 
 
+    path('Homepage/',views.homepage,name="homepage"),
 
 
     path('Pettype/',views.pettype,name="pettype"),
@@ -34,5 +35,12 @@ urlpatterns = [
     path('Traning/',views.traning,name="traning"),
     path('deltraning/<int:id>',views.deltraning,name="deltraning"),
     path('Foodplan/',views.foodplan,name="foodplan"),
+
+
+    path('Hospital/',views.hospital,name="hospital"),
+    path('accept/<str:aid>',views.accept,name="accept"),
+    path('reject/<str:rid>',views.reject,name="reject"),
+
+
 
 ]

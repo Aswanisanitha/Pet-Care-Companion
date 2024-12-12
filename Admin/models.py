@@ -8,6 +8,7 @@ class tbl_category(models.Model):
     category_name=models.CharField(max_length=30)
 
 class tbl_admin(models.Model):
+    admin_id=models.TextField(primary_key=True, editable=False) 
     admin_name=models.CharField(max_length=30)
     admin_mail=models.CharField(max_length=30)
     admin_password=models.CharField(max_length=30)

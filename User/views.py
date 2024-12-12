@@ -124,9 +124,9 @@ def feedback(request):
     feedback=tbl_feedback.objects.all()
     if request.method=="POST":
         content=request.POST.get("content")
-        # tbl_feedback.objects.create(
-        #     feedback_content=content,feedback_date= ,user_id=user
-        # )
+        tbl_feedback.objects.create(
+            feedback_content=content ,user_id=user
+        )
         return render(request,'User/Feedback.html',{'msg':"Data inserted"})
     else:
         return render(request,'User/Feedback.html',{'feedback':feedback})
@@ -196,19 +196,36 @@ def ajaxhospital(request):
     return render(request, "User/AjaxHospital.html", {'vhospl': vhospl})
     
 
-def appoinment(request,id):
-    user=tbl_userreg.objects.get(user_id=request.session["uid"])
-    vhosptl=tbl_vetinaryhospital.objects.get(vetinaryhospital_id=id)
-    appoinment=tbl_appoinment.objects.all()
-    if request.method=="POST":
-        adate=request.POST.get("date")
-        atime=request.POST.get("time")
-        tbl_appoinment.objects.create(
-            appoinment_date=adate,vetinaryhospital_id=vhosptl,user_id=user,appoinment_time=atime
-        )
-        return render(request,'User/Appoinment.html')
+def slot(request, id):
+    slot = tbl_slot.objects.filter(vetinaryhospital_id=id)
+    user = tbl_userreg.objects.get(user_id=request.session["uid"])
+    
+    if request.method == "POST":
+        fordate = request.POST.get("date")
+        slot_id= tbl_slot.objects.get(id=request.POST.get("slot"))
+        appointment_count = tbl_appoinment.objects.filter(slot=slot_id, appoinment_Fordate=fordate).count()
+        
+        if appointment_count >= int(slot_id.slot_count):
+            return render(request, 'User/Slot.html', { 'slot': slot, 'error': "The selected slot is full. Please choose another slot."})
+        else:
+            tbl_appoinment.objects.create(
+            slot=slot_id, user_id=user, appoinment_Fordate=fordate
+            )
+            return redirect("User:myappointment")
     else:
-        return render(request,'User/Appoinment.html',{'appoinment':appoinment})
+        return render(request, 'User/Slot.html', {'slot': slot})
+
+
+
+
+def myappoinment(request):
+    user=tbl_userreg.objects.get(user_id=request.session['uid'])
+    appoinment=tbl_appoinment.objects.filter(user_id=user)
+    
+    return render(request,'User/Myappoinment.html',{"appoinment":appoinment})
+
+
+
 
 
 

@@ -1,6 +1,7 @@
 from django.db import models
 from Admin.models import*
 from Guest.models import*
+from Vetinaryhospital.models import *
 
 
 
@@ -26,14 +27,17 @@ class tbl_complaint(models.Model):
 
 class tbl_feedback(models.Model):
     feedback_content=models.CharField(max_length=300)
-    feedback_date=models.DateField()
+    feedback_date=models.DateField(auto_now_add=True)
     user_id=models.ForeignKey(tbl_userreg,on_delete=models.CASCADE)
 
 class tbl_appoinment(models.Model):
     user_id=models.ForeignKey(tbl_userreg,on_delete=models.CASCADE)
-    vetinaryhospital_id=models.ForeignKey(tbl_vetinaryhospital,on_delete=models.CASCADE)
-    appoinment_date=models.DateField()
-    appoinment_time=models.TimeField()
+    slot=models.ForeignKey(tbl_slot,on_delete=models.CASCADE)
+    appoinment_date=models.DateField(auto_now_add=True)
+    appoinment_Fordate=models.DateField()
+    appoinment_status=models.IntegerField(default=0)
+
+
 
 
 

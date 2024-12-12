@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from Admin.models import *
+from Guest.models import *
 from django.conf import settings
 from supabase import create_client
 import uuid
@@ -131,24 +132,51 @@ def category(request):
 
 
 
+
+
+
 def Admin(request):
     adm=tbl_admin.objects.all()
-    if request.method=="POST":
+    if request.method == "POST":
+        email = request.POST.get('email')
+        password = request.POST.get('password')
         name=request.POST.get("name")
-        mail=request.POST.get("email")
-        pwd=request.POST.get("password")
-        tbl_admin.objects.create(admin_name=name,admin_mail=mail,admin_password=pwd)
-        msg="data Inserted"
-        return render(request,'Admin/Admin.html',{'msg':msg,'Admin':adm})
+
+        
+        try:
+            auth_response = supabase.auth.sign_up({
+                "email": email,
+                "password": password,
+            })
+           
+            
+            if auth_response.user:
+                user_data = auth_response.user  
+                user_id = user_data.id
+                
+
+                
+                
+                tbl_admin.objects.create(admin_id=user_id,admin_name=name,admin_mail=email,admin_password=password)
+                
+                return redirect('Admin:Admin')
+            else:
+                return render(request, "Admin/Admin.html", { "error": "Sign-up failed."})
+
+        except Exception as e:
+            print(e)
+            return render(request, "Admin/Admin.html", {"Admin":adm ,"error": "An error occurred during sign-up."})
     else:
-        return render(request,'Admin/Admin.html',{'Admin':adm})
+        return render(request, "Admin/Admin.html", {'Admin':adm})
+
+
 
 def deladmin(request,id):
-    tbl_admin.objects.get(id=id).delete()
+    tbl_admin.objects.get(admin_id=id).delete()
     return redirect("Admin:Admin")
 
 def editadmin(request,id):
-    ad=tbl_admin.objects.get(id=id)
+    ad=tbl_admin.objects.get(admin_id=id)
     if request.method=="POST":
         name=request.POST.get("name")
         mail=request.POST.get("email")
@@ -161,6 +189,10 @@ def editadmin(request,id):
         return redirect("Admin:Admin")
     else:
         return render(request,'Admin/Admin.html',{'editadmin':ad})
+
+
+def homepage(request):
+    return render(request,'Admin/Homepage.html')
 
 def place(request):
     dis=tbl_district.objects.all()
@@ -354,6 +386,25 @@ def foodplan(request):
         return render(request,'Admin/Foodplan.html',{'msg':"Data inserted"})
     else:
         return render(request,'Admin/Foodplan.html',{'foodplan':foodplan,'pettype':pettype,'food':food})
+
+
+def hospital(request):
+    vhosptl=tbl_vetinaryhospital.objects.all()
+    return render(request,'Admin/Hospital.html',{"vhosptl":vhosptl})
+
+def accept(request,aid):
+    appoinment=tbl_appoinment.objects.get()
+    appoinment.appoinment_status="1"
+    appoinment.save()
+
+    return redirect('Admin:hospital')
+
+def reject(request,rid):
+    appoinment=tbl_appoinment.objects.get()
+    appoinment.appoinment_status="2"
+    appoinment.save()
+    return redirect('Admin:hospital')
+
     
         
               

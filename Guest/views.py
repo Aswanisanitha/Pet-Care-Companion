@@ -97,11 +97,16 @@ def login(request):
                 try:
                     # Check in tbl_vetinaryhospital
                     hospital = tbl_vetinaryhospital.objects.get(vetinaryhospital_id=user_id)
-                    request.session['uid'] = hospital.vetinaryhospital_id
+                    request.session['vid'] = hospital.vetinaryhospital_id
                     return redirect("Vetinaryhospital:homepage")
                 except tbl_vetinaryhospital.DoesNotExist:
+                    try:
+                        admin = tbl_admin.objects.get(admin_id=user_id)
+                        request.session['aid'] = admin.admin_id
+                        return redirect("Admin:homepage")
+                    except tbl_admin.DoesNotExist:
                     # Neither user nor hospital found
-                    return render(request, "Guest/Login.html", {"error": "User does not exist"})
+                       return render(request, "Guest/Login.html", {"error": "User does not exist"})
         else:
             # Invalid authentication
             return render(request, "Guest/Login.html", {"error": "Invalid credentials"})

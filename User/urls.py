@@ -36,14 +36,13 @@ urlpatterns = [
     path('ajaxhospital/',views.ajaxhospital,name="ajaxhospital"),
     path('vetinaryhospital/',views.vetinaryhospital,name="vetinaryhospital"),
 
-    path('Appoinment/<str:id>',views.appoinment,name="appoinment"),
+    path('Myappoinment/',views.myappoinment,name="myappoinment"),
+    
+    path('slot/<str:id>',views.slot,name="slot"),
+
     
 
 
-
-
-
-    
 
 
 

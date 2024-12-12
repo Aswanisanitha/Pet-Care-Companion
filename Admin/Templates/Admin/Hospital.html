@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital List</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+       
+        <table>
+            <tr>
+                <td>#</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Contact</td>
+                <td>Address</td>
+                <td>District</td>
+                <td>Place</td>
+                <td>Status</td>
+            </tr>
+            {% for i in vhosptl %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{i.vetinaryhospital_name}}</td>
+                <td>{{i.vetinaryhospital_contact}}</td>
+                <td>{{i.vetinaryhospital_address}}</td>
+                <td>{{i.place_id.district.district_name}}</td>
+                <td>{{i.place_id.place_name}}</td>
+                <td><a href="{% url 'Admin:accept' i.vetinaryhospital_id %}">Accept</a>
+                <a href="{% url 'Admin:reject' i.vetinaryhospital_id %}">Reject</a></td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Appoinment</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>#</td>
+                <td>Hospital Name</td>
+                <td>Contact</td>
+                <td>Address</td>
+                <td>For Date</td>
+                <td>Time</td>
+                <td>Status</td>
+            </tr>
+            {% for i in appoinment %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{i.slot.vetinaryhospital_id.vetinaryhospital_name}}</td>
+                <td>{{i.slot.vetinaryhospital_id.vetinaryhospital_contact}}</td>
+                <td>{{i.slot.vetinaryhospital_id.vetinaryhospital_address}}</td>
+                <td>{{i.appoinment_date}}</td>
+                <td>{{i.slot.slot_fromtime}}-{{i.slot.slot_totime}}</td>
+                <!-- <td>{{i.}}</td> -->
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
