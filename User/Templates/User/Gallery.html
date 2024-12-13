@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+</head>
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Title</td>
+                <td><input type="text" name="title" id=""></td>
+            </tr>
+            <tr>
+                <td>File</td>
+                <td><input type="file" name="file" id=""></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="2"><input type="submit" value="Submit"></td>
+                <td></td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>#</td>
+                <td>Title</td>
+                <td>File</td>
+                <td>Action</td>
+            </tr>
+            {% for i in gallery%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.gallery_title}}</td>
+                <td><a href="{{i.gallery_file}}"><img src="../../../image.png" alt="" width="150" height="150"></a></td>
+                <td><a href="{% url 'User:delgallery' i.id  %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
+{% if msg %}
+<script>
+    alert("{{msg}}");
+    // window.location="{% url 'User:pet' %}"
+</script>
+{% endif %}

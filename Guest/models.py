@@ -25,6 +25,7 @@ class tbl_vetinaryhospital(models.Model):
     place_id=models.ForeignKey(tbl_place,on_delete=models.CASCADE)
     vetinaryhospital_proof=models.URLField()
     vetinaryhospital_password=models.CharField(max_length=40)
+    vetinaryhospital_status=models.IntegerField(default=0)
 
 
     

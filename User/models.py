@@ -17,6 +17,7 @@ class tbl_pet(models.Model):
     user_id=models.ForeignKey(tbl_userreg,on_delete=models.CASCADE)
 
 class tbl_complaint(models.Model):
+    
     complaint_title=models.CharField(max_length=30)
     complaint_content=models.CharField(max_length=300)
     complaint_date=models.DateField(auto_now_add=True)
@@ -36,6 +37,23 @@ class tbl_appoinment(models.Model):
     appoinment_date=models.DateField(auto_now_add=True)
     appoinment_Fordate=models.DateField()
     appoinment_status=models.IntegerField(default=0)
+    appoinment_token=models.IntegerField(null=True)
+
+class tbl_gallery(models.Model):
+    pet_id=models.ForeignKey(tbl_pet,on_delete=models.CASCADE)
+    gallery_title=models.CharField(max_length=30)
+    gallery_file=models.URLField()
+    gallery_date=models.DateField(auto_now_add=True)
+
+class tbl_vaccinedetails(models.Model):
+    vaccine_name=models.CharField(max_length=30)
+    vaccine_details=models.CharField(max_length=30)
+    vaccine_date=models.DateField()
+    vaccine_fordate=models.DateField()
+    pet_id=models.ForeignKey(tbl_pet,on_delete=models.CASCADE)
+
+
+
 
 
 

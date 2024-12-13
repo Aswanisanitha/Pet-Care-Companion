@@ -79,7 +79,10 @@
                 <td>{{i.pet_weight}}</td>
                 <td>{{i.pet_age}}</td>
                 <td>{{i.gender}}</td>
-                <td><a href="{% url 'User:delpet' i.id %}">Delete</a></td>
+                <td><a href="{% url 'User:delpet' i.id %}">Delete</a>
+                <td><a href="{% url 'User:vaccination' i.id %}">Vaccine</a>
+
+                    <a href="{% url 'User:gallery' i.id %}">Gallery</a></td>
             </tr>
             {% endfor %}
         </table>

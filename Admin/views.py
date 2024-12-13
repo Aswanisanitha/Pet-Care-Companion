@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from Admin.models import *
 from Guest.models import *
+from User.models import *
 from django.conf import settings
 from supabase import create_client
 import uuid
@@ -393,17 +394,37 @@ def hospital(request):
     return render(request,'Admin/Hospital.html',{"vhosptl":vhosptl})
 
 def accept(request,aid):
-    appoinment=tbl_appoinment.objects.get()
-    appoinment.appoinment_status="1"
-    appoinment.save()
+    vhosptl=tbl_vetinaryhospital.objects.get(vetinaryhospital_id=aid)
+    vhosptl.vetinaryhospital_status="1"
+    vhosptl.save()    
 
     return redirect('Admin:hospital')
 
 def reject(request,rid):
-    appoinment=tbl_appoinment.objects.get()
-    appoinment.appoinment_status="2"
-    appoinment.save()
+    vhosptl=tbl_vetinaryhospital.objects.get(vetinaryhospital_id=rid)
+    vhosptl.vetinaryhospital_status="2"
+    vhosptl.save() 
     return redirect('Admin:hospital')
+
+def viewcomplaint(request):
+    complaint=tbl_complaint.objects.all()
+    return render(request,'Admin/Viewcomplaints.html',{"complaint":complaint})
+
+def reply(request,id):
+    complaint=tbl_complaint.objects.get(id=id)
+    if request.method=="POST":
+        reply=request.POST.get("reply")
+        complaint.complaint_reply=reply
+        complaint.complaint_status="1"
+        complaint.save()
+        
+        return redirect('Admin:viewcomplaint')
+    else:
+        return render(request,'Admin/Reply.html',{"complaint":complaint})
+        
+
+
+    
 
     
         

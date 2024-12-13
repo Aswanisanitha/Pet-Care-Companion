@@ -5,11 +5,42 @@ from User.models import *
 from django.conf import settings
 from supabase import create_client
 import uuid
+from django.core.mail import send_mail
+from django.utils.timezone import now, timedelta
 # Create your views here.
 
 
 
 supabase = create_client(settings.SUPABASE_URL, settings.SUPABASE_KEY)
+
+
+def send_vaccine_reminders():
+    tomorrow = now().date() + timedelta(days=1)
+    print(tomorrow)
+    reminders = tbl_vaccinedetails.objects.filter(vaccine_fordate=tomorrow)
+    
+    for reminder in reminders:
+        subject = "Vaccine Reminder"
+        body = f"""
+        Dear User,
+
+        This is a reminder about your pet's vaccination:
+        Vaccine Name: {reminder.vaccine_name}
+        Vaccine Details: {reminder.vaccine_details}
+        Scheduled Date: {reminder.vaccine_fordate}
+
+        Please make sure your pet gets the vaccine on time.
+
+        Regards,
+        Pet Care Companion Team
+        """
+        recipient_email = reminder.pet_id.user.user_email  
+        send_mail(
+            subject,
+            body,
+            settings.EMAIL_HOST_USER,
+            [recipient_email],
+        )
 
 def homepage(request):
     return render(request,'User/Homepage.html')
@@ -56,8 +87,8 @@ def changepassword(request):
 def pet(request):
     user=tbl_userreg.objects.get(user_id=request.session['uid'])
     pettype=tbl_pettype.objects.all()
-    pet=tbl_pet.objects.all()
-    # print(pet)
+    pet=tbl_pet.objects.filter(user_id=user)
+   
     if request.method=="POST":
         name=request.POST.get("name")
         weight=request.POST.get("weight")
@@ -97,6 +128,50 @@ def ajaxbreed(request):
 def delpet(request,id):
     tbl_pet.objects.get(id=id).delete()
     return redirect("User:pet")
+
+
+def gallery(request,id):
+    gallery=tbl_gallery.objects.filter(pet_id=id)
+    if request.method=="POST":
+        title=request.POST.get('title')
+        photo=request.FILES.get("file")
+
+        if photo:
+            try:
+            
+                file_name = f"Petgallery/{photo.name}"
+                photo_content = photo.read()
+                storage_response = supabase.storage.from_("petcare").upload(file_name, photo_content)
+                photo_url = supabase.storage.from_("petcare").get_public_url(file_name)
+            except Exception as e:
+                print(e)
+                return render(request, "User/Gallery.html", { "msg": "Failed to upload photo."})
+        else:
+            photo_url = None  
+
+        tbl_gallery.objects.create(
+            gallery_file=photo_url,gallery_title=title,pet_id=tbl_pet.objects.get(id=id)
+        )
+        
+        return render(request,'User/Gallery.html',{'msg':"Data inserted"})
+    else:
+      
+        return render(request,'User/Gallery.html',{'gallery':gallery})
+
+
+
+def delgallery(request,id):
+    tbl_gallery.objects.get(id=id).delete()
+    return redirect("User:gallery")
+
+
+def viewpets(request):
+    pet=tbl_pet.objects.all()
+    return render(request,'User/Viewpets.html',{"view":pet})
+
+def viewgallery(request,id):
+    file=tbl_gallery.objects.filter(pet_id=id)
+    return render(request,'User/Viewgallery.html',{"view":file})
 
 
 
@@ -202,16 +277,25 @@ def slot(request, id):
     
     if request.method == "POST":
         fordate = request.POST.get("date")
-        slot_id= tbl_slot.objects.get(id=request.POST.get("slot"))
+        slot_id = tbl_slot.objects.get(id=request.POST.get("slot"))
+        
+        
         appointment_count = tbl_appoinment.objects.filter(slot=slot_id, appoinment_Fordate=fordate).count()
         
         if appointment_count >= int(slot_id.slot_count):
             return render(request, 'User/Slot.html', { 'slot': slot, 'error': "The selected slot is full. Please choose another slot."})
         else:
+          
+            token_number = appointment_count + 1
+            
+            
             tbl_appoinment.objects.create(
-            slot=slot_id, user_id=user, appoinment_Fordate=fordate
+                slot=slot_id,
+                user_id=user,
+                appoinment_Fordate=fordate,
+                appoinment_token=token_number  
             )
-            return redirect("User:myappointment")
+            return redirect("User:myappoinment")
     else:
         return render(request, 'User/Slot.html', {'slot': slot})
 
@@ -221,8 +305,30 @@ def slot(request, id):
 def myappoinment(request):
     user=tbl_userreg.objects.get(user_id=request.session['uid'])
     appoinment=tbl_appoinment.objects.filter(user_id=user)
-    
     return render(request,'User/Myappoinment.html',{"appoinment":appoinment})
+
+def mycomplaint(request):
+    user=tbl_userreg.objects.get(user_id=request.session['uid'])
+    complaint=tbl_complaint.objects.filter(user_id=user)
+    return render(request,'User/My complaints.html',{"complaint":complaint})
+
+
+def vaccination(request,id):
+    pet=tbl_pet.objects.get(id=id)
+    vaccine=tbl_vaccinedetails.objects.filter(pet_id=id)
+
+    if request.method=="POST":
+        name=request.POST.get('name')
+        details=request.POST.get('details')
+        date=request.POST.get('date')
+        ndate=request.POST.get('ndate')
+        tbl_vaccinedetails.objects.create(
+            vaccine_name=name,vaccine_details=details,vaccine_date=date,vaccine_fordate=ndate,pet_id=pet
+        )
+        return render(request,'User/Vaccination.html',{"vaccine":vaccine})
+    else:
+        return render(request,'User/Vaccination.html',{"vaccine":vaccine})
+
 
 
 

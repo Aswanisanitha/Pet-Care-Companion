@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Appoinment</title>
+    <title>My Appointment</title>
 </head>
 <body>
     <form action="" method="post">
@@ -16,7 +16,7 @@
                 <td>Address</td>
                 <td>For Date</td>
                 <td>Time</td>
-                <td>Status</td>
+                <td>Token Number</td>
             </tr>
             {% for i in appoinment %}
             <tr>
@@ -26,7 +26,7 @@
                 <td>{{i.slot.vetinaryhospital_id.vetinaryhospital_address}}</td>
                 <td>{{i.appoinment_date}}</td>
                 <td>{{i.slot.slot_fromtime}}-{{i.slot.slot_totime}}</td>
-                <!-- <td>{{i.}}</td> -->
+                <td>{{i.appoinment_token}}</td>
             </tr>
             {% endfor %}
         </table>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My complaints</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>#</td>
+                <td>Title</td>
+                <td>Content</td>
+                <td>Reply</td>
+                <td>Date</td>
+                <td>Action</td>
+            </tr>
+            {% for i in complaint %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{i.complaint_title}}</td>
+                <td>{{i.complaint_content}}</td>
+                <td>{% if i.complaint_status == 0 %}
+                    Not Replied
+                    {% else %}
+                    {{i.complaint_reply}}
+                    {% endif %}</td>
+                <td>{{i.complaint_date}}</td>
+                
+                <td><a href="{% url 'Admin:reply' i.id %}">Reply</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>

@@ -22,31 +22,7 @@
             <td></td>
         </tr>
     </table>
-    <table>
-        <tr>
-            <td>#</td>
-            <td>Title</td>
-            <td>Content</td>
-            <td>Date</td>
-            <td>Reply</td>
-            <td>Action</td>
-        </tr>
-        {% for i in complaint %}
-        <tr>
-            <td>{{forloop.counter}}</td>
-            <td>{{i.complaint_title}}</td>
-            <td>{{i.complaint_content}}</td>
-            <td>{{i.complaint_date}}</td>
-            <td>{% if i.complaint_status == 0 %}
-                Not Replied
-                {% else %}
-                {{i.complaint_reply}}
-                {% endif %}
-            </td>
-            <td><a href="{% url 'User:delcomplaint' i.id %}">Delete</a></td>
-        </tr>
-        {% endfor %}
-    </table>
+    
   </form>  
 </body>
 </html>
@@ -56,3 +32,6 @@
     window.location="{% url 'User:complaint' %}"
 </script>
 {% endif %}
+
+
+

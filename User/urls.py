@@ -14,6 +14,12 @@ urlpatterns = [
     path('Pet/',views.pet,name="pet"),
     path('Ajaxbreed/',views.ajaxbreed,name="ajaxbreed"),
     path('delpet/<int:id>',views.delpet,name="delpet"),
+    path('gallery/<int:id>',views.gallery,name="gallery"),
+    path('delgallery/<int:id>',views.delgallery,name="delgallery"),
+    path('Viewpets/',views.viewpets,name="viewpets"),
+    path('Viewgallery/<int:id>',views.viewgallery,name="viewgallery"),
+
+
 
     path('Complaint/',views.complaint,name="complaint"),
     path('delcomplaint/<int:id>',views.delcomplaint,name="delcomplaint"),
@@ -39,6 +45,10 @@ urlpatterns = [
     path('Myappoinment/',views.myappoinment,name="myappoinment"),
     
     path('slot/<str:id>',views.slot,name="slot"),
+    path('Mycomplaint/',views.mycomplaint,name="mycomplaint"),
+
+
+    path('Vaccination/<int:id>',views.vaccination,name="vaccination"),
 
     
 

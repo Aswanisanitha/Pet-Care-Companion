@@ -6,19 +6,27 @@
     <title>User Home Page</title>
 </head>
 <body>
-    <a href="{% url 'User:myprofile' %}">Profile</a>
+    
+<table>
+    <tr><td><a href="{% url 'User:myprofile' %}">Profile</a></td></tr>
     
 
-    <a href="{% url 'User:complaint' %}">Complaint</a>
+    <tr><td><a href="{% url 'User:pet' %}"> Pet</a></td></tr>
+    <tr><td><a href="{% url 'User:viewpets' %}"> Pets</a></td></tr>
 
-    <a href="{% url 'User:feedback' %}">Feedback</a>
-    <a href="{% url 'User:myappoinment' %}">My Appionment</a>
-    <a href="{% url 'User:vetinaryhospital' %}"> Hospital</a>
+    <tr><td><a href="{% url 'User:food' %}"> Food</a></td></tr>
+    <tr><td><a href="{% url 'User:training' %}"> Training</a></td></tr>
+    <tr><td><a href="{% url 'User:activity' %}"> Activity</a></td></tr>
+    <tr><td><a href="{% url 'User:abnormalactivity' %}"> Abnormalactivity</a></td></tr>
 
+    <tr><td><a href="{% url 'User:vetinaryhospital' %}"> Hospital</a></td></tr>
+    <tr><td><a href="{% url 'User:myappoinment' %}">My Appionment</a></td></tr> 
 
-
-    
-
+    <tr><td> <a href="{% url 'User:complaint' %}">Complaint</a></td></tr>
+    <tr><td> <a href="{% url 'User:mycomplaint' %}">My Complaints</a></td></tr>
+    <tr><td> <a href="{% url 'User:feedback' %}">Feedback</a></td></tr>
+      
+</table>
     
 </body>
 </html>

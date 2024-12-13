@@ -6,6 +6,24 @@
     <title>Admin Homepage</title>
 </head>
 <body>
-    <a href="{% url 'Admin:hospital' %}">Hospital List</a>
+    
+    <table>
+
+    <tr><td><a href="{% url 'Admin:hospital' %}">Hospital List</a></td></tr>
+    <tr><td><a href="{% url 'Admin:pettype' %}">Pet Type</a></td></tr>
+    <tr><td><a href="{% url 'Admin:breed' %}">Breed</a></td></tr>
+    <tr><td><a href="{% url 'Admin:food' %}">Food</a></td></tr>
+    <tr><td><a href="{% url 'Admin:activity' %}">Activity</a></td></tr>
+    <tr><td><a href="{% url 'Admin:abnormalactivity' %}">Abnormalactivity</a></td></tr>
+    <tr><td><a href="{% url 'Admin:traning' %}">Traning</a></td></tr>
+    <tr><td><a href="{% url 'Admin:foodplan' %}">Food plan</a></td></tr>
+    <tr><td><a href="{% url 'Admin:district' %}">District</a></td></tr>
+    <tr><td><a href="{% url 'Admin:place' %}">Place</a></td></tr>
+    <tr><td><a href="{% url 'Admin:viewcomplaint' %}">View Complaints</a></td></tr>
+
+
+
+    </table>
+
 </body>
 </html>

@@ -41,6 +41,9 @@ urlpatterns = [
     path('accept/<str:aid>',views.accept,name="accept"),
     path('reject/<str:rid>',views.reject,name="reject"),
 
+    path('Viewcomplaint/',views.viewcomplaint,name="viewcomplaint"),
+    path('Reply/<int:id>',views.reply,name="reply"),
+
 
 
 ]

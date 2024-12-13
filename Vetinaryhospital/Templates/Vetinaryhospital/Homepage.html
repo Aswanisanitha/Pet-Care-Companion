@@ -6,11 +6,12 @@
     <title>Hospital Home Page</title>
 </head>
 <body>
-    <a href="{% url 'Vetinaryhospital:myprofile' %}">Profile</a>
-    <a href="{% url 'Vetinaryhospital:appointments' %}">Appointments</a>
-    <a href="{% url 'Vetinaryhospital:slot' %}">Slot</a>
-
-
+    
+<table>
+    <tr><td><a href="{% url 'Vetinaryhospital:myprofile' %}">Profile</a></td></tr>
+    <tr><td><a href="{% url 'Vetinaryhospital:appointments' %}">Appointments</a></td></tr>
+    <tr><td><a href="{% url 'Vetinaryhospital:slot' %}">Slot</a></td></tr>
+</table>
     
 </body>
 </html>

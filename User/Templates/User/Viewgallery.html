@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Gallery</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                {% for i in view %}
+                <td><img src="{{i.gallery_file}}" width="150" height="150" alt="" ></td>
+                {% endfor %}
+            </tr>
+           
+        </table>
+    </form>
+</body>
+</html>
