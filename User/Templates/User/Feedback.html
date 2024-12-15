@@ -1,3 +1,5 @@
+{% extends 'User/Head.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,3 +45,5 @@
     window.location="{% url 'User:feedback' %}"
 </script>
 {% endif %}
+
+{% endblock %}

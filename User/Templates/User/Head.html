@@ -1,0 +1,210 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>User Homepage</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'Main/img/favicon.png' %}">
+    <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'Main/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/css/flaticon.css' %}' %}">
+    <link rel="stylesheet" href="{% static 'Main/css/gijgo.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/css/style.css' %}">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <header>
+        <div class="header-area ">
+            <div class="header-top_area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-8">
+                           
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div id="sticky-header" class="main-header-area">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-3">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="img/logo.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a  href="{% url 'User:homepage' %}"><img src="{% static 'Main/img/Home.png' %}" width="20" height="20" alt=""></a></li>
+                                        <li><a  href="{% url 'User:myprofile' %}"><img src="{% static 'Main/img/user.png' %}" width="20" height="20" alt=""></a></li>
+                                        <li><a href="{% url 'User:pet' %}">Pet</a></li>
+                                        <li><a href="#">Pet Care Essentials <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="{% url 'User:food' %}">Food</a></li>
+                                                <li><a href="{% url 'User:training' %}">Traning</a></li>
+                                                <!-- <li><a href="{% url 'User:activity' %}">Activity</a></li>
+                                                <li><a href="{% url 'User:abnormalactivity' %}">Abnormal Activity</a></li> -->
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Hospital</i><i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="{% url 'User:vetinaryhospital' %}">Hospitals</a></li>
+                                                <li><a href="{% url 'User:myappoinment' %}">My Appointments</a></li>                                                
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Complaint<i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="{% url 'User:complaint' %}">Complaints</a></li>
+                                                <li><a href="{% url 'User:mycomplaint' %}">My Complaints</a></li>
+                                                <li><a href="{% url 'User:feedback' %}">Feedback</a></li>                                               
+                                            </ul>
+                                        </li>
+                                        
+                                        <li><a href="{% url 'User:viewpets' %}">View Other Pets</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container" align="center" style="padding-top: 5%;">
+    {% block content %}
+
+
+    {% endblock  %}
+    </div>
+    <br><br><br><br>
+
+    <!-- footer_start  -->
+    <footer class="footer">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3  col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Contact Us
+                            </h3>
+                            <ul class="links">
+                                <li><a href="#">petspetcarecompanion@gmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                   
+                    <div class="footer_widget">
+                        <h3 class="footer_title">
+                           we provide
+                        </h3>
+                        <ul class="links">
+                            <li><a href="#">Pet Food </a></li>
+                            <li><a href="#">Pet Traning </a></li>
+                            <li><a href="#">Pet Activity</a></li>
+                            <li><a href="#">Hospital Appointment</a></li>
+                            
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="bordered_1px"></div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |</p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer_end  -->
+
+  
+
+    <!-- JS here -->
+    <script src="{% static 'Main/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static 'Main/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'Main/js/popper.min.js' %}"></script>
+    <script src="{% static 'Main/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'Main/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'Main/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'Main/js/ajax-form.js' %}"></script>
+    <script src="{% static 'Main/js/waypoints.min.js' %}"></script>
+    <script src="{% static 'Main/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'Main/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'Main/js/scrollIt.js' %}"></script>
+    <script src="{% static 'Main/js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'Main/js/wow.min.js' %}"></script>
+    <script src="{% static 'Main/js/nice-select.min.js' %}"></script>
+    <script src="{% static 'Main/js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'Main/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'Main/js/plugins.js' %}"></script>
+    <script src="{% static 'Main/js/gijgo.min.js' %}"></script>
+
+    <!--contact js-->
+    <script src="{% static 'Main/js/contact.js' %}"></script>
+    <script src="{% static 'Main/js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'Main/js/jquery.form.js' %}"></script>
+    <script src="{% static 'Main/js/jquery.validate.min.js' 5}"></script>
+    <script src="{% static 'Main/js/mail-script.js' %}"></script>
+
+    <script src="{% static 'Main/js/main.js' %}"></script>
+    <script>
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            disableDaysOfWeek: [0, 0],
+        //     icons: {
+        //      rightIcon: '<span class="fa fa-caret-down"></span>'
+        //  }
+        });
+        $('#datepicker2').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+             rightIcon: '<span class="fa fa-caret-down"></span>'
+         }
+
+        });
+        var timepicker = $('#timepicker').timepicker({
+         format: 'HH.MM'
+     });
+    </script>
+</body>
+
+</html>
