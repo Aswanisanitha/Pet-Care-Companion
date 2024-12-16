@@ -119,12 +119,9 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated"
                                 aria-labelledby="navbarDropdown">
-                                <!-- <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
-                                    My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i>
-                                    My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>
-                                    Inbox</a> -->
+                               
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="m-r-10 mdi mdi-logout"></i>
+                                    Logout</a>
                             </ul>
                         </li>
                         <!-- ============================================================== -->
@@ -192,6 +189,25 @@
             <!-- End Sidebar scroll-->
         </aside>
                <div class="page-wrapper">
+                <div class="page-breadcrumb">
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0 d-flex align-items-center">
+                                  <li class="breadcrumb-item"><a href="{% url 'Admin:homepage' %}" class="link"><i class="mdi mdi-home-outline fs-4"></i></a></li>
+                                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                </ol>
+                              </nav>
+                            <!-- <h1 class="mb-0 fw-bold">Dashboard</h1>  -->
+                        </div>
+                        <div class="col-6">
+                            <!-- <div class="text-end upgrade-btn">
+                                <a href="https://www.wrappixel.com/templates/flexy-bootstrap-admin-template/" class="btn btn-primary text-white"
+                                    target="_blank">Upgrade to Pro</a>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
             <div class="container-fluid">
                 <div class="row">
                     <div align="center">

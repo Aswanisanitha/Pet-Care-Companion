@@ -102,7 +102,7 @@ h6 a {
 
 /* line 50, ../../Arafath/CL/january 2020/240. Animal/HTML/scss/_reset.scss */
 ul {
-  margin: 0px;
+  margin: -10px;
   padding: 0px;
 }
 

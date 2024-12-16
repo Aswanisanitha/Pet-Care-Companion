@@ -140,12 +140,9 @@
                                 <img src="{% static 'Admin/assets/images/user.png' %}" alt="user" class="rounded-circle" width="31">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                                <!-- <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
-                                    My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i>
-                                    My Balance</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>
-                                    Inbox</a> -->
+                                 
+                                <a class="dropdown-item" href="javascript:void(0)"><i class="m-r-10 mdi mdi-logout"></i>
+                                    Logout</a>
                             </ul>
                         </li>
                         <!-- ============================================================== -->
@@ -185,9 +182,9 @@
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{% url 'Admin:activity' %}" aria-expanded="false"><i class="mdi mdi-file"></i><span
                                     class="hide-menu">Activity</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{% url 'Admin:abnormalactivity' %}" aria-expanded="false"><i class="mdi mdi-file"></i><span
-                                    class="hide-menu">Abnormal Activity</span></a></li>
+                                    class="hide-menu">Abnormal Activity</span></a></li> -->
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                 href="{% url 'Admin:traning' %}" aria-expanded="false"><i class="mdi mdi-file"></i><span
                                     class="hide-menu">Traning</span></a></li>

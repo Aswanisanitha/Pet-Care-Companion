@@ -46,7 +46,7 @@
     <!-- <link rel="manifest" href="site.webmanifest"> -->
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'Main/img/favicon.png' %}">
     <!-- Place favicon.ico in the root directory -->
-   
+
     <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
     <!-- CSS here -->
     <link rel="stylesheet" href="{% static 'Main/css/bootstrap.min.css' %}">
@@ -74,9 +74,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6 col-md-8">
-                           
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                         <div class="col-xl-3 col-lg-3">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="img/logo.png" alt="">
+                                    <img src="{% static 'Main/img/img.png' %}" alt="">
                                 </a>
                             </div>
                         </div>
@@ -94,32 +94,38 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a  href="{% url 'User:homepage' %}"><img src="{% static 'Main/img/Home.png' %}" width="20" height="20" alt=""></a></li>
-                                        <li><a  href="{% url 'User:myprofile' %}"><img src="{% static 'Main/img/user.png' %}" width="20" height="20" alt=""></a></li>
+                                        <li><a href="{% url 'User:homepage' %}"><img
+                                                    src="{% static 'Main/img/Home.png' %}" width="20" height="20"
+                                                    alt=""></a></li>
+                                        <li><a href="{% url 'User:myprofile' %}"><img
+                                                    src="{% static 'Main/img/user.png' %}" width="20" height="20"
+                                                    alt=""></a></li>
                                         <li><a href="{% url 'User:pet' %}">Pet</a></li>
                                         <li><a href="#">Pet Care Essentials <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="{% url 'User:food' %}">Food</a></li>
                                                 <li><a href="{% url 'User:training' %}">Traning</a></li>
-                                                <!-- <li><a href="{% url 'User:activity' %}">Activity</a></li>
-                                                <li><a href="{% url 'User:abnormalactivity' %}">Abnormal Activity</a></li> -->
+                                                <li><a href="{% url 'User:activity' %}">Activity</a></li>
+                                                <!-- <li><a href="{% url 'User:abnormalactivity' %}">Abnormal Activity</a></li>  -->
                                             </ul>
                                         </li>
                                         <li><a href="#">Hospital</i><i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="{% url 'User:vetinaryhospital' %}">Hospitals</a></li>
-                                                <li><a href="{% url 'User:myappoinment' %}">My Appointments</a></li>                                                
+                                                <li><a href="{% url 'User:myappoinment' %}">My Appointments</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="#">Complaint<i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="{% url 'User:complaint' %}">Complaints</a></li>
                                                 <li><a href="{% url 'User:mycomplaint' %}">My Complaints</a></li>
-                                                <li><a href="{% url 'User:feedback' %}">Feedback</a></li>                                               
+                                                <li><a href="{% url 'User:feedback' %}">Feedback</a></li>
                                             </ul>
                                         </li>
-                                        
+
                                         <li><a href="{% url 'User:viewpets' %}">View Other Pets</a></li>
+                                        <!-- <li><a  href="{% url 'User:myprofile' %}"><img src="{% static 'Main/img/user.png' %}" width="20" height="20" alt=""></a></li> -->
+
                                     </ul>
                                 </nav>
                             </div>
@@ -161,48 +167,52 @@
                 <div class="col-lg-7 col-md-10">
                     <div class="section_title text-center mb-95">
                         <h3>Details We provide</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna.</p>
                     </div>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6">
                     <div class="single_service">
-                         <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
-                             <div class="service_icon">
-                                 <img src="{% static 'Main/img/service/service_icon_1.png' %}" alt="">
-                             </div>
-                         </div>
-                         <div class="service_content text-center">
+                        <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
+                            <div class="service_icon">
+                                <img src="{% static 'Main/img/service/service_icon_1.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="service_content text-center">
                             <h3>Pet Boarding</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                         </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="single_service active">
-                         <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
-                             <div class="service_icon">
-                                 <img src="{% static 'Main/img/service/service_icon_2.png' %}" alt="">
-                             </div>
-                         </div>
-                         <div class="service_content text-center">
+                        <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
+                            <div class="service_icon">
+                                <img src="{% static 'Main/img/service/service_icon_2.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="service_content text-center">
                             <h3>Healthy Meals</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                         </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="single_service">
-                         <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
-                             <div class="service_icon">
-                                 <img src="{% static 'Main/img/service/service_icon_3.png' %}" alt="">
-                             </div>
-                         </div>
-                         <div class="service_content text-center">
+                        <div class="service_thumb service_icon_bg_1 d-flex align-items-center justify-content-center">
+                            <div class="service_icon">
+                                <img src="{% static 'Main/img/service/service_icon_3.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="service_content text-center">
                             <h3>Pet Spa</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-                         </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -224,7 +234,8 @@
                         <div class="section_title">
                             <h3><span>We care your pet </span> <br>
                                 As you care</h3>
-                            <p>Does your pet have any health problems?<br> Book an appointment at the nearest veterinary hospital </p>
+                            <p>Does your pet have any health problems?<br> Book an appointment at the nearest veterinary
+                                hospital </p>
                             <a href="{% url 'User:vetinaryhospital' %}" class="boxed-btn3">Book Appointment</a>
                         </div>
                     </div>
@@ -234,7 +245,7 @@
     </div>
     <!-- pet_care_area_end  -->
 
-    
+
 
     <!-- team_area_start  -->
     <div class="team_area">
@@ -299,7 +310,8 @@
                     <div class="contact_text text-center">
                         <div class="section_title text-center">
                             <h3>Why go with Pet Care Companion?</h3>
-                            <p>Because we know that even the best technology is only as good as the people behind it. 24/7 tech support.</p>
+                            <p>Because we know that even the best technology is only as good as the people behind it.
+                                24/7 tech support.</p>
                         </div>
                         <div class="contact_btn d-flex align-items-center justify-content-center">
                             <!-- <a href="" class="boxed-btn4">Contact Us</a> -->
@@ -311,35 +323,50 @@
         </div>
     </div>
 
-    <!-- footer_start  -->
     <footer class="footer">
         <div class="footer_top">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-3  col-md-6 col-lg-3">
+                    <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">
                                 Contact Us
                             </h3>
-                            <ul class="links">
-                                <li><a href="#">petspetcarecompanion@gmail.com</a></li>
+                            <ul class="address_line">
+                                <li>+555 0000 565</li>
+                                <li><a href="#">petspetcarecompanion@gmail.com </a></li>
+                                <li>700, Green Lane, New York, USA</li>
                             </ul>
                         </div>
                     </div>
-                   
-                    <div class="footer_widget">
-                        <h3 class="footer_title">
-                           we provide
-                        </h3>
-                        <ul class="links">
-                            <li><a href="#">Pet Food </a></li>
-                            <li><a href="#">Pet Traning </a></li>
-                            <li><a href="#">Pet Activity</a></li>
-                            <li><a href="#">Hospital Appointment</a></li>
+                    <div class="col-xl-3  col-md-6 col-lg-3">
+                        <div class="footer_widget">
                             
-                        </ul>
+                        </div>
                     </div>
+                    <div class="col-xl-3  col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                we provide
+                            </h3>
+                            <ul class="links">
+                                <li><a href="#">Pet Food </a></li>
+                                <li><a href="#">Pet Traning </a></li>
+                                <li><a href="#">Pet Activity</a></li>
+                                <li><a href="#">Hospital Appointment</a></li>
 
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3 ">
+                        <div class="footer_widget">
+                            
+                            
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -350,13 +377,17 @@
                     <div class="col-xl-12">
                         <p class="copy_right text-center">
                             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |
-                        </p></p>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved  <i class="ti-heart" aria-hidden="true"></i> 
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- footer_start  -->
+    
     <!-- footer_end  -->
 
 
@@ -392,20 +423,20 @@
         $('#datepicker').datepicker({
             iconsLibrary: 'fontawesome',
             disableDaysOfWeek: [0, 0],
-        //     icons: {
-        //      rightIcon: '<span class="fa fa-caret-down"></span>'
-        //  }
+            //     icons: {
+            //      rightIcon: '<span class="fa fa-caret-down"></span>'
+            //  }
         });
         $('#datepicker2').datepicker({
             iconsLibrary: 'fontawesome',
             icons: {
-             rightIcon: '<span class="fa fa-caret-down"></span>'
-         }
+                rightIcon: '<span class="fa fa-caret-down"></span>'
+            }
 
         });
         var timepicker = $('#timepicker').timepicker({
-         format: 'HH.MM'
-     });
+            format: 'HH.MM'
+        });
     </script>
 </body>
 
