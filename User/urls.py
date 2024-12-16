@@ -50,6 +50,9 @@ urlpatterns = [
 
     path('Vaccination/<int:id>',views.vaccination,name="vaccination"),
 
+    path('predict_image/',views.predict_image,name="predict_image"),
+
+
     
 
 
