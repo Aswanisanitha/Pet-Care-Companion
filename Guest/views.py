@@ -1,14 +1,20 @@
 from django.shortcuts import render,redirect
 from Guest.models import *
+from User.models import *
 from django.conf import settings
 from supabase import create_client
-import uuid
+from django.core.mail import send_mail
+from django.utils import timezone
+from datetime import timedelta
 # Create your views here.
 
 
 
 supabase = create_client(settings.SUPABASE_URL, settings.SUPABASE_KEY)
 
+
+def index(request):
+    return render(request,'Guest/Index.html')
 
 def userreg(request):
     dis = tbl_district.objects.all()
@@ -92,6 +98,7 @@ def login(request):
                 # Check in tbl_userreg
                 user = tbl_userreg.objects.get(user_id=user_id)
                 request.session['uid'] = user.user_id
+                send_vaccine_reminders(user)
                 return redirect("User:homepage")
             except tbl_userreg.DoesNotExist:
                 try:
@@ -115,6 +122,44 @@ def login(request):
         return render(request, 'Guest/Login.html')
 
 
+
+
+
+def send_vaccine_reminders(user):
+    """
+    Sends email reminders for vaccines scheduled for tomorrow.
+    """
+    tomorrow = timezone.now().date() + timedelta(days=1)
+
+    # Check for vaccines scheduled tomorrow for the logged-in user
+    reminders = tbl_vaccinedetails.objects.filter(
+        pet_id__user=user,  # Ensure the pet belongs to the logged-in user
+        vaccine_fordate=tomorrow
+    )
+
+    for reminder in reminders:
+        subject = "Vaccine Reminder for Your Pet"
+        body = f"""
+        Dear {user.user_name},
+
+        This is a reminder about your pet's vaccination:
+        Vaccine Name: {reminder.vaccine_name}
+        Vaccine Details: {reminder.vaccine_details}
+        Scheduled Date: {reminder.vaccine_fordate}
+
+        Please ensure your pet gets the vaccine on time.
+
+        Regards,
+        Pet Care Companion Team
+        """
+
+        send_mail(
+            subject,
+            body,
+            settings.EMAIL_HOST_USER,  # Sender's email from settings
+            [user.user_email],         # Recipient's email
+            fail_silently=False,
+        )
 
 
 

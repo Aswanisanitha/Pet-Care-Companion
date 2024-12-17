@@ -1,36 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Home Page</title>
-</head>
-<body>
-    
-<table>
-    <tr><td><a href="{% url 'User:myprofile' %}">Profile</a></td></tr>
-    
-
-    <tr><td><a href="{% url 'User:pet' %}"> Pet</a></td></tr>
-    <tr><td><a href="{% url 'User:viewpets' %}"> Pets</a></td></tr>
-
-    <tr><td><a href="{% url 'User:food' %}"> Food</a></td></tr>
-    <tr><td><a href="{% url 'User:training' %}"> Training</a></td></tr>
-    <tr><td><a href="{% url 'User:activity' %}"> Activity</a></td></tr>
-    <tr><td><a href="{% url 'User:abnormalactivity' %}"> Abnormalactivity</a></td></tr>
-
-    <tr><td><a href="{% url 'User:vetinaryhospital' %}"> Hospital</a></td></tr>
-    <tr><td><a href="{% url 'User:myappoinment' %}">My Appionment</a></td></tr> 
-
-    <tr><td> <a href="{% url 'User:complaint' %}">Complaint</a></td></tr>
-    <tr><td> <a href="{% url 'User:mycomplaint' %}">My Complaints</a></td></tr>
-    <tr><td> <a href="{% url 'User:feedback' %}">Feedback</a></td></tr>
-      
-</table>
-    
-</body>
-</html> -->
-
 {% load static %}
 
 <!doctype html>
@@ -39,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>User Homepage</title>
+    <title>Pet Care Companion</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -94,37 +61,13 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="{% url 'User:homepage' %}"><img
+                                        <li><a href="{% url 'Guest:index' %}"><img
                                                     src="{% static 'Main/img/Home.png' %}" width="20" height="20"
                                                     alt=""></a></li>
-                                        <li><a href="{% url 'User:myprofile' %}"><img
-                                                    src="{% static 'Main/img/user.png' %}" width="20" height="20"
-                                                    alt=""></a></li>
-                                        <li><a href="{% url 'User:pet' %}">Pet</a></li>
-                                        <li><a href="#">Pet Care Essentials <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="{% url 'User:food' %}">Food</a></li>
-                                                <li><a href="{% url 'User:training' %}">Traning</a></li>
-                                                <li><a href="{% url 'User:activity' %}">Activity</a></li>
-                                                <!-- <li><a href="{% url 'User:abnormalactivity' %}">Abnormal Activity</a></li>  -->
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Hospital</i><i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="{% url 'User:vetinaryhospital' %}">Hospitals</a></li>
-                                                <li><a href="{% url 'User:myappoinment' %}">My Appointments</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Complaint<i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="{% url 'User:complaint' %}">Complaints</a></li>
-                                                <li><a href="{% url 'User:mycomplaint' %}">My Complaints</a></li>
-                                                <li><a href="{% url 'User:feedback' %}">Feedback</a></li>
-                                            </ul>
-                                        </li>
-
-                                        <li><a href="{% url 'User:viewpets' %}">View Other Pets</a></li>
-                                        <!-- <li><a  href="{% url 'User:myprofile' %}"><img src="{% static 'Main/img/user.png' %}" width="20" height="20" alt=""></a></li> -->
+                                        
+                                        <li><a href="{% url 'Guest:userreg' %}">User Registartion</a></li>
+                                        <li><a href="{% url 'Guest:vetinaryhospital' %}">Hospital Registration</a></li>
+                                        <li><a href="{% url 'Guest:login' %}">Login</a></li>
 
                                     </ul>
                                 </nav>
