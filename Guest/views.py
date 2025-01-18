@@ -98,7 +98,11 @@ def login(request):
                 # Check in tbl_userreg
                 user = tbl_userreg.objects.get(user_id=user_id)
                 request.session['uid'] = user.user_id
-                send_vaccine_reminders(user)
+
+                # Check if the user has added vaccine details
+                if tbl_vaccinedetails.objects.filter(pet_id__user=user).exists():
+                    send_vaccine_reminders(user)
+                
                 return redirect("User:homepage")
             except tbl_userreg.DoesNotExist:
                 try:
@@ -108,18 +112,20 @@ def login(request):
                     return redirect("Vetinaryhospital:homepage")
                 except tbl_vetinaryhospital.DoesNotExist:
                     try:
+                        # Check in tbl_admin
                         admin = tbl_admin.objects.get(admin_id=user_id)
                         request.session['aid'] = admin.admin_id
                         return redirect("Admin:homepage")
                     except tbl_admin.DoesNotExist:
-                    # Neither user nor hospital found
-                       return render(request, "Guest/Login.html", {"error": "User does not exist"})
+                        # Neither user, hospital, nor admin found
+                        return render(request, "Guest/Login.html", {"error": "User does not exist"})
         else:
             # Invalid authentication
             return render(request, "Guest/Login.html", {"error": "Invalid credentials"})
     else:
         # For non-POST requests
         return render(request, 'Guest/Login.html')
+
 
 
 
