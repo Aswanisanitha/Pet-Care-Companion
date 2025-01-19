@@ -100,8 +100,8 @@ def login(request):
                 request.session['uid'] = user.user_id
 
                 # Check if the user has added vaccine details
-                if tbl_vaccinedetails.objects.filter(pet_id__user=user).exists():
-                    send_vaccine_reminders(user)
+                # if tbl_vaccinedetails.objects.filter(pet_id__user=user).exists():
+                #     send_vaccine_reminders(user)
                 
                 return redirect("User:homepage")
             except tbl_userreg.DoesNotExist:
